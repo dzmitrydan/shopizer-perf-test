@@ -1,0 +1,10 @@
+{
+  "simulation": "simulation.ShopizerPerfTest",
+  "simulationId": "shopizerperftest",
+  "start": 1679356986889,
+  "description": "",
+  "scenarios": ["Open HomePage", "Add Table to Cart", "Add Chair to Cart", "Actions with Cart"],
+  "assertions": [
+
+  ]
+}

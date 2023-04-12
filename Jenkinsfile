@@ -9,6 +9,10 @@ pipeline {
                 sh 'mvn -B clean package'
             }
         }
+        stage('Pull Latest Code') {
+                    git branch: 'master',
+                        url: 'git@github.com:dzmitrydan/shopizer-perf-test.git'
+                }
         stage("Run Gatling") {
             steps {
                 sh 'mvn gatling:test'

@@ -11,7 +11,6 @@ object BaseHelpers {
   val usersNumber = System.getProperty("Users", "100").toInt
   val shopizerUrl = "http://localhost:8080/"
   val shopizerApi = shopizerUrl + "api/v1/"
-  val orderId = "d99a8686d0b44a0db6e1c75a874b6f5e"
 
   def thinkTimer(Min :Int = 2, Max :Int = 5): ChainBuilder = {
     pause(Min, Max)
@@ -22,5 +21,5 @@ object BaseHelpers {
     .acceptEncodingHeader("gzip, deflate, br")
     .acceptLanguageHeader("en-GB,en-US;q=0.9,en;q=0.8")
     .upgradeInsecureRequestsHeader("1")
-    .userAgentHeader("Mozilla/5/0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537/36 (KHTML. like Gecko) Chrome/73/0/368/86 Safari/537/36")
+    .userAgentHeader("Mozilla/5/0 (Macintosh; Intel Mac OS X 13_2_6) AppleWebKit/537/36 (KHTML. like Gecko) Chrome/73/0/368/86 Safari/537/36")
 }

@@ -33,6 +33,9 @@ object loadPageContent {
     exec(
       http("category")
         .get(shopizerApi + "category/?count=20&page=0&store=DEFAULT&lang=en")
+        .check(jsonPath("$.categories[0].code").is("DEFAULT"))
+        .check(jsonPath("$.categories[1].code").is("tables"))
+        .check(jsonPath("$.categories[2].code").is("chairs"))
     )
   }
 }

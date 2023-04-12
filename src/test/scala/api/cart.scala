@@ -7,17 +7,22 @@ import io.gatling.http.Predef._
 
 object cart {
 
+
+
   def cartStore(): ChainBuilder = {
+
     exec(
       http("cartStore")
-        .get(shopizerApi + "cart/" + orderId + "?store=DEFAULT")
+        .get(session => shopizerApi + s"cart/${session("orderId").as[String]}?store=DEFAULT")
+        .check(jsonPath("$.code").is(session => s"${session("orderId").as[String]}"))
     )
   }
 
   def cartTotal(): ChainBuilder = {
     exec(
       http("cartTotal")
-        .get(shopizerApi + "cart/" + orderId + "/total/")
+        .get(session => shopizerApi + s"cart/${session("orderId").as[String]}/total/")
+        .check(jsonPath("$.total").is("$199.00"))
     )
   }
 

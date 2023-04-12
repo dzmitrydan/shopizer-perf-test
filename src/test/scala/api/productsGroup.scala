@@ -10,6 +10,8 @@ object productsGroup {
     exec(
       http("productsGroup")
         .get(shopizerApi + "products/group/FEATURED_ITEM?store=DEFAULT&lang=en")
+        .check(jsonPath("$.products[0].products").is("table1"))
+        .check(jsonPath("$.products[1].products").is("chair1"))
     )
   }
 }

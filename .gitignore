@@ -15,5 +15,4 @@
 *.iml
 
 ### Maven
-test-classes/gatling/
-!target
+target/

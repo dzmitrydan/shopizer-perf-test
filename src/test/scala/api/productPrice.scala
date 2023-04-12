@@ -11,6 +11,7 @@ object productPrice {
       http(s"productPrice#$prod")
         .post(shopizerApi + s"product/$prod/price/")
         .body(StringBody("""{"options":[]}""")).asJson
+        .check(jsonPath("$.discounted").is("false"))
     )
   }
 }

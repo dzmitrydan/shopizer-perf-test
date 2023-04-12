@@ -7,34 +7,37 @@ import io.gatling.http.Predef._
 
 object addProductToCart {
 
-  def addProductToCart(prod: String): ChainBuilder = {
+
+  def addTableToCart(): ChainBuilder = {
     exec(
-      http(s"add$prod" + "ToCart")
-        .put(shopizerApi + "cart/" + orderId + "?store=DEFAULT")
+      http("addTableToCart")
+        .post(shopizerApi + "cart/?store=DEFAULT")
         .body(StringBody("""{"attributes":[],"product":"table1","quantity":1}""")).asJson
+        .check(regex(""""code":"(.+?)","subtotal"""").saveAs("orderId"))
+        .check(jsonPath("$.products[0].refSku").is("table1"))
     )
   }
 
   def getInfoAboutOrder(prod: String): ChainBuilder = {
     exec(
       http(s"getInfoAbout$prod")
-        .get(shopizerApi + "cart/" + orderId + "?lang=en")
+        .get(session => shopizerApi + s"cart/${session("orderId").as[String]}?lang=en")
     )
   }
 
   def getInfoAboutOrderDefault(): ChainBuilder = {
     exec(
       http("getInfoAboutOrderDefault")
-        .get(shopizerApi + "cart/" + orderId + "?store=DEFAULT")
+        .get(session => shopizerApi + s"cart/${session("orderId").as[String]}?store=DEFAULT")
     )
   }
 
-  def addDefaultChairToCart(): ChainBuilder = {
+  def addChairToCart(): ChainBuilder = {
     exec(
-      http("addDefaultChairToCart")
-        .post(shopizerApi + "/cart/?store=DEFAULT")
+      http("addChairToCart")
+        .post(shopizerApi + "cart/?store=DEFAULT")
         .body(StringBody("""{"attributes":[],"product":"chair1","quantity":1}""")).asJson
-        .check(jsonPath("$.products[0].description.description").is("Chair from Thailand"))
+        .check(jsonPath("$.products[0].refSku").is("chair1"))
     )
   }
 }

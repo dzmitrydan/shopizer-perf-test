@@ -8,7 +8,7 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 
 object BaseHelpers {
 
-  val usersNumber = System.getProperty("Users", "100").toInt
+  val usersNumber = System.getProperty("Users", "1").toInt
   val shopizerUrl = "http://localhost:8080/"
   val shopizerApi = shopizerUrl + "api/v1/"
 

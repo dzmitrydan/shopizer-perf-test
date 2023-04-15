@@ -1,12 +1,15 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven-3.9.0'
-    }
     stages {
+        stage("Clone code") {
+             steps {
+                git branch: 'master',
+                url: 'git@github.com:dzmitrydan/shopizer-perf-test.git'
+             }
+        }
         stage("Build Maven") {
             steps {
-                sh 'mvn clean'
+                sh 'mvn -B clean package'
             }
         }
         stage("Run Gatling") {

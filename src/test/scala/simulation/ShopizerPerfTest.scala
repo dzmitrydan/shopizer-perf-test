@@ -9,7 +9,7 @@ import scala.language.postfixOps
 class ShopizerPerfTest extends Simulation {
 
   //mvn clean gatling:test
-  //mvn clean gatling:test -DUsers=100
+  //mvn clean gatling:test -DUsers=100 -DDuration=5
 
   setUp(
     scnAddProductsToCart.inject(constantConcurrentUsers(usersNumber).during(testDuration minutes))

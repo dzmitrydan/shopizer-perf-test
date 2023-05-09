@@ -11,7 +11,7 @@ object BaseHelpers {
   val usersNumber = System.getProperty("Users", "3").toInt
   val shopizerUrl = "http://localhost:8080/"
   val shopizerApi = shopizerUrl + "api/v1/"
-  val testDuration = 10
+  val testDuration = System.getProperty("Duration", "10").toInt
 
   def thinkTimer(Min :Int = 2, Max :Int = 5): ChainBuilder = {
     pause(Min, Max)

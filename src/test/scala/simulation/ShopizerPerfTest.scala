@@ -12,6 +12,6 @@ class ShopizerPerfTest extends Simulation {
   //mvn clean gatling:test -DUsers=100 -DDuration=5
 
   setUp(
-    scnAddProductsToCart.inject(constantConcurrentUsers(usersNumber).during(testDuration minutes))
+    scnAddProductsToCart.inject(constantConcurrentUsers(161).during(30 minutes))
   ).protocols(httpProtocol)
 }

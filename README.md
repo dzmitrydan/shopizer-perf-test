@@ -1,1 +1,2 @@
 # shopizer-perf-test
+- Gatling
